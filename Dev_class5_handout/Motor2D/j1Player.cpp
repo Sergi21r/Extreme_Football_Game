@@ -16,3 +16,55 @@ j1Player::j1Player() : j1Module(){
 
 j1Player::~j1Player(){
 }
+
+bool j1Player::Awake() {
+	bool ret=true;
+	
+
+
+
+	return ret;
+}
+
+bool j1Player::Start() {
+	bool ret = true;
+	App->tex->Load("Player_sprites.png");
+
+
+
+
+	return ret;
+}
+
+bool j1Player::PreUpdate() {
+
+
+
+
+
+	return true;
+}
+
+bool j1Player::Update(float dt) {
+
+	
+
+
+	return true;
+}
+
+bool j1Player::PostUpdate() {
+
+
+
+
+	return true;
+}
+
+bool j1Player::CleanUp() {
+
+
+
+
+	return true;
+}
