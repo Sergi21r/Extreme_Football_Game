@@ -6,10 +6,6 @@
 #include "p2Point.h"
 #include "j1Module.h"
 
-
-#define TILEX 32;
-#define TILEY 32;
-
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
 
@@ -105,8 +101,6 @@ public:
 	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
 
-	bool IsCollision(float x, float y);
-
 private:
 
 	bool LoadMap();
@@ -118,13 +112,12 @@ private:
 public:
 
 	MapData data;
-	uint*				collision=nullptr;
+
 private:
 
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
-	
 };
 
 #endif // __j1MAP_H__

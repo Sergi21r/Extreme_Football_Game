@@ -7,6 +7,9 @@
 #include "j1Textures.h"
 #include "j1Animation.h"
 
+struct SDL_texture;
+struct SDL_Rect;
+
 enum STATUS {
 	STEADY,
 	JUMPING,
@@ -31,7 +34,6 @@ public:
 	// Called before the first frame
 	bool Start();
 
-
 	// Called before all Updates
 	bool PreUpdate();
 
@@ -44,25 +46,20 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	// Load 
+	// Load / Save
 	bool Load(pugi::xml_node&);
-	
+	//bool Save(pugi::xml_node&) const;
 
-	
+	//void Input();
 	void Draw();
 
-	
+	bool Falling();
+	//void Jumping();
 
 	fPoint				position;
 
 
-<<<<<<< HEAD
 public:
-=======
-private:
-	p2SString name=nullptr;
-	
->>>>>>> e7c285883c54c8704668d95bf6a74269d0167059
 	
 	p2SString name = nullptr;
 	unsigned int width = 0;

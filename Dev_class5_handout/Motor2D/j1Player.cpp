@@ -58,19 +58,10 @@ bool j1Player::PreUpdate()
 	return true;
 }
 
-<<<<<<< HEAD
 bool j1Player::Update(float dt) 
 {
-=======
-
-
-bool j1Player::Update(float dt) {
->>>>>>> e7c285883c54c8704668d95bf6a74269d0167059
 	//Input();
-	if (App->map->IsCollision(position.x, position.y) == false) {
-		LOG("FALLING");
-		position.y += 0.5f;
-	}
+
 	//right
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) 
 	{
@@ -148,6 +139,9 @@ bool j1Player::Load(pugi::xml_node& data)
 	return true;
 }*/
 
+/*void j1Player::Input() {
+
+}*/
 
 void j1Player::Draw() {
 	SDL_Rect r;
@@ -162,3 +156,11 @@ void j1Player::Draw() {
 
 }
 
+bool j1Player::Falling() {
+
+	return true;
+}
+
+/*void j1Player::Jumping() {
+
+}*/
