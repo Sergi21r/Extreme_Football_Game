@@ -7,8 +7,8 @@
 #include "j1Module.h"
 
 
-#define TILEX 50;
-#define TILEY 15;
+#define TILEX 32;
+#define TILEY 32;
 
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
@@ -118,13 +118,13 @@ private:
 public:
 
 	MapData data;
-
+	uint*				collision=nullptr;
 private:
 
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
-	uint*				collision=nullptr;
+	
 };
 
 #endif // __j1MAP_H__

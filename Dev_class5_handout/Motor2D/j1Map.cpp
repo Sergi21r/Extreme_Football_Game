@@ -309,6 +309,7 @@ bool j1Map::LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set)
 			i++;
 			LOG("collision added");
 		}
+		
 	}
 
 	return ret;
@@ -381,19 +382,25 @@ bool j1Map::IsCollision(float x, float y) {
 	//x and y are pixels of player
 	int tilex = x / TILEX;
 	int tiley = y / TILEY;
-	tiley += 3; //to find the tile at the bottom of player
+	LOG("Tilex %i Tiley %i", tilex, tiley);
+	LOG("positionx %f positiony %f", x, y);
+	tiley += 1; //to find the tile at the bottom of player
 	//find layer with collisions
 	p2List_item<map_layer*>* layer_list;
+	p2List_item<map_layer*>* layerpatron=nullptr;
 	bool found = false;
 	for (layer_list = data.layer.start; layer_list != NULL && found == false; layer_list = layer_list->next) {
 		if (layer_list->data->name == "Capa de Patrones 1") {
 			//found
+			layerpatron = layer_list;
 			found = true;
 		}
 	}
-	uint gid = layer_list->data->Get(tilex,tiley) + 1; //add firstgid
+	uint gid = layerpatron->data->Get(tilex,tiley) - 1; //add firstgid
 	for (int i = 0; i <= 100; i++) {
-		if (collision[i] == gid) {
+		uint coll = collision[i];
+		if (coll == gid) {
+			LOG("gid %i", gid);
 			return true;
 		}
 	}

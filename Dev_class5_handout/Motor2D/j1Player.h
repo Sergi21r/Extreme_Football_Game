@@ -30,6 +30,7 @@ public:
 	// Called before the first frame
 	bool Start();
 
+
 	// Called before all Updates
 	bool PreUpdate();
 
@@ -42,15 +43,14 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	// Load / Save
+	// Load 
 	bool Load(pugi::xml_node&);
-	//bool Save(pugi::xml_node&) const;
+	
 
-	//void Input();
+	
 	void Draw();
 
-	bool Falling();
-	//void Jumping();
+	
 
 	fPoint				position;
 
