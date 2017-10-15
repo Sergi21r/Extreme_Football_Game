@@ -50,7 +50,7 @@ bool j1Player::PreUpdate() {
 
 bool j1Player::Update(float dt) {
 	//Input();
-
+	if (App->map->IsCollision(position.x,position.y) == false) position.y += 2;
 	//right
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
 		if (status2 == FLOOR) {
@@ -141,10 +141,15 @@ void j1Player::Draw() {
 
 }
 
-bool j1Player::Falling() {
-
-	return true;
-}
+/*bool j1Player::Falling() {
+	bool isCollision = App->map->IsCollision(position.x, position.y);
+	if (isCollision == true) {
+		return false;
+	}
+	else if(isCollision == false) {
+		return true;
+	}
+}*/
 
 /*void j1Player::Jumping() {
 

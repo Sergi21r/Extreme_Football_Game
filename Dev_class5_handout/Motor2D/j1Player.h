@@ -6,9 +6,6 @@
 #include "p2Point.h"
 #include "j1Textures.h"
 
-struct SDL_texture;
-struct SDL_Rect;
-
 enum STATUS {
 	STEADY,
 	JUMPING,
@@ -60,8 +57,7 @@ public:
 
 private:
 	p2SString name=nullptr;
-	unsigned int width=0;
-	unsigned int height=0;
+	
 	
 	SDL_Texture* graph=nullptr;
 

@@ -1,10 +1,12 @@
 #include "p2Defs.h"
 #include "p2Log.h"
+#include "p2List.h"
 #include "j1App.h"
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Map.h"
 #include <math.h>
+
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -291,6 +293,23 @@ bool j1Map::LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set)
 		set->offset_x = 0;
 		set->offset_y = 0;
 	}
+	LOG("collision start");
+	// search tile id which is collision
+	pugi::xml_node tile;
+	int i = 0;
+	collision = new uint[100];
+	for (tile = tileset_node.child("tile"); tile && ret; tile = tile.next_sibling("tile")) {
+		LOG("inside tile");
+		uint id = tile.attribute("id").as_uint();
+		pugi::xml_node properties = tile.child("properties");
+		LOG("id: %i", id);
+
+		if (properties != NULL) {
+			collision[i]= id;
+			i++;
+			LOG("collision added");
+		}
+	}
 
 	return ret;
 }
@@ -356,4 +375,27 @@ bool j1Map::LoadLayer(pugi::xml_node& node, map_layer* layer)
 	}
 
 	return ret;
+}
+
+bool j1Map::IsCollision(float x, float y) {
+	//x and y are pixels of player
+	int tilex = x / TILEX;
+	int tiley = y / TILEY;
+	tiley += 3; //to find the tile at the bottom of player
+	//find layer with collisions
+	p2List_item<map_layer*>* layer_list;
+	bool found = false;
+	for (layer_list = data.layer.start; layer_list != NULL && found == false; layer_list = layer_list->next) {
+		if (layer_list->data->name == "Capa de Patrones 1") {
+			//found
+			found = true;
+		}
+	}
+	uint gid = layer_list->data->Get(tilex,tiley) + 1; //add firstgid
+	for (int i = 0; i <= 100; i++) {
+		if (collision[i] == gid) {
+			return true;
+		}
+	}
+	return false;
 }
