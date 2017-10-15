@@ -63,10 +63,10 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x -= 1;
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		App->render->camera.y -= 40;
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
-		App->render->camera.y += 40;
+		App->render->camera.y += 40;*/
 
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();

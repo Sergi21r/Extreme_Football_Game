@@ -4,6 +4,22 @@
 #include "j1Module.h"
 #include "p2List.h"
 #include "p2Point.h"
+#include "j1Textures.h"
+
+struct SDL_texture;
+struct SDL_Rect;
+
+enum STATUS {
+	STEADY,
+	JUMPING,
+	WALKING,
+	FALLING
+};
+
+enum STATUS2 {
+	AIR,
+	FLOOR
+};
 
 
 
@@ -12,7 +28,7 @@ public:
 	j1Player();
 	~j1Player();
 	// Called before render is available
-	bool Awake();
+	bool Awake(pugi::xml_node&);
 
 	// Called before the first frame
 	bool Start();
@@ -29,20 +45,28 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	// Load / Save
+	bool Load(pugi::xml_node&);
+	//bool Save(pugi::xml_node&) const;
 
+	//void Input();
+	void Draw();
 
+	bool Falling();
+	//void Jumping();
 
-
-
-
+	fPoint				position;
 
 
 private:
-	p2SString name;
-	unsigned int width;
-	unsigned int height;
+	p2SString name=nullptr;
+	unsigned int width=0;
+	unsigned int height=0;
+	
+	SDL_Texture* graph=nullptr;
 
-
+	STATUS status;
+	STATUS2 status2;
 
 
 
