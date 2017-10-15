@@ -13,15 +13,15 @@
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
 
-j1Player::j1Player() : j1Module(){
+j1Player::j1Player() : j1Module() {
 	name.create("player");
 }
 
-j1Player::~j1Player(){
+j1Player::~j1Player() {
 }
 
 bool j1Player::Awake(pugi::xml_node&) {
-	bool ret=true;
+	bool ret = true;
 	position.x = 0;
 	position.y = 283;
 
@@ -30,7 +30,7 @@ bool j1Player::Awake(pugi::xml_node&) {
 
 bool j1Player::Start() {
 	bool ret = true;
-	graph=App->tex->Load("maps/person1.png");
+	graph = App->tex->Load("maps/person1.png");
 	status = STEADY;
 	status2 = FLOOR;
 
@@ -48,9 +48,14 @@ bool j1Player::PreUpdate() {
 	return true;
 }
 
+
+
 bool j1Player::Update(float dt) {
 	//Input();
-
+	if (App->map->IsCollision(position.x, position.y) == false) {
+		LOG("FALLING");
+		position.y += 0.5f;
+	}
 	//right
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
 		if (status2 == FLOOR) {
@@ -61,7 +66,7 @@ bool j1Player::Update(float dt) {
 			position.x += 5;
 		}
 	}
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_UP && status2==FLOOR) {
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_UP && status2 == FLOOR) {
 		status = STEADY;
 	}
 
@@ -78,7 +83,7 @@ bool j1Player::Update(float dt) {
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_UP && status2 == FLOOR) {
 		status = STEADY;
 	}
-	
+
 	//jump
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && status2 == FLOOR) {
 		if (status != JUMPING) {
@@ -108,7 +113,7 @@ bool j1Player::CleanUp() {
 
 bool j1Player::Load(pugi::xml_node& data)
 {
-	
+
 
 
 	return true;
@@ -117,16 +122,13 @@ bool j1Player::Load(pugi::xml_node& data)
 
 /*bool j1Player::Save(pugi::xml_node& data) const
 {
-	
 
 
 
-	return true;
+
+return true;
 }*/
 
-/*void j1Player::Input() {
-
-}*/
 
 void j1Player::Draw() {
 	SDL_Rect r;
@@ -140,12 +142,3 @@ void j1Player::Draw() {
 
 
 }
-
-bool j1Player::Falling() {
-
-	return true;
-}
-
-/*void j1Player::Jumping() {
-
-}*/
