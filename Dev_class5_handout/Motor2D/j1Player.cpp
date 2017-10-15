@@ -13,62 +13,47 @@
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
 
-j1Player::j1Player() : j1Module()
-{
+j1Player::j1Player() : j1Module(){
 	name.create("player");
 }
 
-j1Player::~j1Player()
-{
+j1Player::~j1Player(){
 }
 
-bool j1Player::Awake(pugi::xml_node&) 
-{
+bool j1Player::Awake(pugi::xml_node&) {
 	bool ret=true;
 	position.x = 0;
 	position.y = 283;
 
-	//Run
-	run.PushBack({ 19,20,131,260 });
-	run.PushBack({ 250,10,181,250 });
-	run.PushBack({ 510,11,172,260 });
-	run.PushBack({ 801,10,141,262 });
-	run.PushBack({ 1001,10,180,260 });
-	run.PushBack({ 1240,10,150,260 });
-	run.loop = 5.0f;
-
 	return ret;
 }
 
-bool j1Player::Start() 
-{
+bool j1Player::Start() {
 	bool ret = true;
 	graph=App->tex->Load("maps/person1.png");
 	status = STEADY;
 	status2 = FLOOR;
 
-	//graph = App->tex->Load("maps/Player_sprites.png");
+
 
 	return ret;
 }
 
-bool j1Player::PreUpdate() 
-{
+bool j1Player::PreUpdate() {
+
+
+
+
 
 	return true;
 }
 
-bool j1Player::Update(float dt) 
-{
+bool j1Player::Update(float dt) {
 	//Input();
 
 	//right
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) 
-	{
-		this_animation = &run;
-
-		if (status2 == FLOOR) 
-		{
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
+		if (status2 == FLOOR) {
 			position.x += 5;
 			status = WALKING;
 		}
