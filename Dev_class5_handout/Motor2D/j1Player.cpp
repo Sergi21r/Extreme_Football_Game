@@ -54,11 +54,11 @@ bool j1Player::Update(float dt) {
 	//right
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
 		if (status2 == FLOOR) {
-			position.x += 0.4f;
+			position.x += 5;
 			status = WALKING;
 		}
 		else if (status2 == AIR) {
-			position.x += 0.4f;
+			position.x += 5;
 		}
 	}
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_UP && status2==FLOOR) {
@@ -68,11 +68,11 @@ bool j1Player::Update(float dt) {
 	//left
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) {
 		if (status2 == FLOOR) {
-			position.x -= 0.4f;
+			position.x -= 5;
 			status = WALKING;
 		}
 		else if (status2 == AIR) {
-			position.x -= 0.4f;
+			position.x -= 5;
 		}
 	}
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_UP && status2 == FLOOR) {

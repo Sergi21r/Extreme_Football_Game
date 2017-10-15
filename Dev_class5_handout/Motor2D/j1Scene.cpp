@@ -57,11 +57,11 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 		App->render->camera.y += 1;*/
 
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		App->render->camera.x += 1;
+	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		App->render->camera.x += 3;
 
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		App->render->camera.x -= 1;
+	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		App->render->camera.x -= 3;
 
 	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		App->render->camera.y -= 40;
